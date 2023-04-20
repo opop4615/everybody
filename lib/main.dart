@@ -1,3 +1,6 @@
+import 'package:everyvaluation/screen/community.dart';
+import 'package:everyvaluation/screen/setting.dart';
+import 'package:everyvaluation/screen/valuation.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 
@@ -38,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 3,
       vsync: this,
     );
@@ -83,15 +86,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         controller: _tabController,
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
-          const Center(
-            child: Text("밸류에이션"),
-          ),
-          const Center(
-            child: Text("커뮤니티"),
-          ),
-          const Center(
-            child: Text("설정"),
-          ),
+          ValuationScreen(),
+          CommunityScreen(),
+          SettingScreen(),
         ],
       ),
     );
