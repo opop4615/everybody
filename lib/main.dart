@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromARGB(255, 10, 38, 71),
         fontFamily: 'nanum'
       ),
-      home: MyHomePage(),
+      home: home(),
     );
   }
 }

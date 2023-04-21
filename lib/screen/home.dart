@@ -4,16 +4,16 @@ import 'package:everyvaluation/screen/valuation.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, this.title}) : super(key: key);
+class home extends StatefulWidget {
+  const home({Key? key, this.title}) : super(key: key);
 
   final String? title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _homeState createState() => _homeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+class _homeState extends State<home> with TickerProviderStateMixin {
   TabController? _tabController;
 
   @override
