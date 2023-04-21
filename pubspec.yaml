@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   motion_tab_bar_v2: ^0.2.3
+  get:
 
 
   # The following adds the Cupertino Icons font to your application.

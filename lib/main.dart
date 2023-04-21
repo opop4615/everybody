@@ -2,6 +2,7 @@ import 'package:everyvaluation/screen/community.dart';
 import 'package:everyvaluation/screen/setting.dart';
 import 'package:everyvaluation/screen/valuation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 
 void main() => runApp(const MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: '모두의 밸류에이션',
       theme: ThemeData(
         primarySwatch: Colors.blue,
