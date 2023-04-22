@@ -33,8 +33,13 @@ dependencies:
   motion_tab_bar_v2: ^0.2.3
   get:
   firebase_auth: ^4.4.2
-  flutter_login: ^4.1.1
   font_awesome_flutter: ^10.4.0
+  flutter_launcher_icons:
+  flutter_launcher_name:
+  flutter_typeahead: ^4.3.7
+
+flutter_launcher_name:
+  naem: "모두의 밸류에이션"
 
 
   # The following adds the Cupertino Icons font to your application.

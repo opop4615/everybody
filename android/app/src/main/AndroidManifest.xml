@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.everyvaluation">
    <application
-        android:label="everyvaluation"
+        android:label="null"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
