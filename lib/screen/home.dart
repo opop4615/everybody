@@ -43,7 +43,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
         tabSize: 50,
         tabBarHeight: 55,
         textStyle: const TextStyle(
-          fontSize: 15,
+          fontSize: 12,
           color: Colors.white,
           fontWeight: FontWeight.w500,
         ),

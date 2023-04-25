@@ -24,7 +24,7 @@ class _ValuationScreenState extends State<ValuationScreen> {
             Row(
               children: [
                 SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
               ],
             ),
@@ -35,7 +35,7 @@ class _ValuationScreenState extends State<ValuationScreen> {
                   "모두의\n밸류에이션",
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: 25,
+                      fontSize: 20,
                       letterSpacing: -1.5),
                 ),
               ],
@@ -54,52 +54,64 @@ class _ValuationScreenState extends State<ValuationScreen> {
                   '모두를 위한 주식 가치평가 어플리케이션',
                   style: TextStyle(
                       fontWeight: FontWeight.w100,
-                      fontSize: 15,
+                      fontSize: 10,
                       letterSpacing: -1),
                 )
               ],
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 15),
             Container(
-              child: TypeAheadField(
-              textFieldConfiguration: TextFieldConfiguration(
-                autofocus: false,
-                controller: this._typeAheadController,
-                style: TextStyle(fontSize: 12),
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: '종목명 혹은 티커를 입력하세요.'),
-              ),
-              suggestionsCallback: (pattern) async {
-                return await Tickers.getSuggestions(pattern);
-              },
-              itemBuilder: (context, Map<String, String> suggestion) {
-                return ListTile(
-                  title: Text(
-                    suggestion['Name']!,
-                    style: TextStyle(fontSize: 12),
+              height: 40,
+              padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+              decoration: BoxDecoration(color: Colors.white,
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(22)),
+              child: Row(
+                children: [Container(child: Icon(Icons.search, color: Colors.grey[600],),),
+                  Expanded(
+                    child: TypeAheadField(
+                    textFieldConfiguration: TextFieldConfiguration(
+                      autofocus: false,
+                      controller: this._typeAheadController,
+                      style: TextStyle(fontSize: 12, color: Colors.black),
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
+                          hintText: '종목명 혹은 티커를 입력하세요.'),
+                    ),
+                    suggestionsCallback: (pattern) async {
+                      return await Tickers.getSuggestions(pattern);
+                    },
+                    itemBuilder: (context, Map<String, String> suggestion) {
+                      return ListTile(
+                        title: Text(
+                          suggestion['Name']!,
+                          style: TextStyle(fontSize: 12),
+                        ),
+                        subtitle: Text(
+                          '${suggestion['Code']}',
+                          style: TextStyle(fontSize: 8),
+                        ),
+                      );
+                    },
+                    onSuggestionSelected: (Map<String, String> suggestion) {
+                      this._typeAheadController.text = suggestion['Name']!;
+                      // your implementation here
+                    },
+                    noItemsFoundBuilder: (value) {
+                      var localizedMessage = "존재하지 않는 종목명 혹은 티커입니다.";
+                      return Text(
+                        localizedMessage,
+                        style: TextStyle(fontSize: 15),
+                      );
+                    },
+                    suggestionsBoxDecoration:  SuggestionsBoxDecoration(
+                      constraints: BoxConstraints(maxHeight: 160)
+                    ),
+                              ),
                   ),
-                  subtitle: Text(
-                    '${suggestion['Code']}',
-                    style: TextStyle(fontSize: 8),
-                  ),
-                );
-              },
-              onSuggestionSelected: (Map<String, String> suggestion) {
-                this._typeAheadController.text = suggestion['Name']!;
-                // your implementation here
-              },
-              noItemsFoundBuilder: (value) {
-                var localizedMessage = "존재하지 않는 종목명 혹은 티커입니다.";
-                return Text(
-                  localizedMessage,
-                  style: TextStyle(fontSize: 15),
-                );
-              },
-              suggestionsBoxDecoration:  SuggestionsBoxDecoration(
-                constraints: BoxConstraints(maxHeight: 160)
+                ],
               ),
-            ),
             )
           ],
         ),

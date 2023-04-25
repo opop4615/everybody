@@ -18,7 +18,7 @@ class SplashView extends StatelessWidget {
         child: Text(
           '모두의\n밸류에이션',
           style: TextStyle(
-              fontSize: 25, letterSpacing: -2, fontWeight: FontWeight.w500),
+              fontSize: 12, letterSpacing: -2, fontWeight: FontWeight.w500),
           textAlign: TextAlign.center,
         ),
       ),
