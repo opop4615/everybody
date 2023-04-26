@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: '모두의밸류에이션',
       theme: ThemeData(
+        useMaterial3: true,
           primarySwatch: Colors.blue,
           brightness: Brightness.dark,
           primaryColor: const Color.fromARGB(255, 10, 38, 71),
