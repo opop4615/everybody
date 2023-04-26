@@ -38,6 +38,7 @@ dependencies:
   flutter_launcher_name:
   flutter_typeahead: ^4.3.7
   http: ^0.13.5
+  firebase_core:
 
 
 flutter_launcher_name:

@@ -1,14 +1,23 @@
 import 'package:everyvaluation/screen/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 //https://ipt9nj2vdb.execute-api.ap-northeast-2.amazonaws.com/everyvalue/
 //API주소
 
-void main() => runApp(const MyApp());
+void main() async{
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {

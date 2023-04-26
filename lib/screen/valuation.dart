@@ -1,3 +1,4 @@
+import 'package:everyvaluation/firebase_options.dart';
 import 'package:everyvaluation/model/ticker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -11,6 +12,8 @@ class _ValuationScreenState extends State<ValuationScreen> {
   void initState() {
     super.initState();
   }
+
+
 
   final TextEditingController _typeAheadController = TextEditingController();
 

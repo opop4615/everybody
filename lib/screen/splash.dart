@@ -3,6 +3,7 @@ import 'package:everyvaluation/screen/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 class SplashView extends StatelessWidget {
   const SplashView({Key? key}) : super(key: key);
 
