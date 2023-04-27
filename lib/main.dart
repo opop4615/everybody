@@ -1,17 +1,31 @@
+import 'dart:io';
+
+import 'package:everyvaluation/firebase_options.dart';
 import 'package:everyvaluation/screen/splash.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-
 //https://ipt9nj2vdb.execute-api.ap-northeast-2.amazonaws.com/everyvalue/
 //API주소
 
+
+//인증서무시(Build할때 빼자)
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
+
+
 void main() async{
+  HttpOverrides.global = MyHttpOverrides(); //요것도 인증서 무시, Build할때 빼자
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
