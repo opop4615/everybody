@@ -13,8 +13,6 @@ class _ValuationScreenState extends State<ValuationScreen> {
     super.initState();
   }
 
-
-
   final TextEditingController _typeAheadController = TextEditingController();
 
   @override
@@ -38,7 +36,7 @@ class _ValuationScreenState extends State<ValuationScreen> {
                   "모두의\n밸류에이션",
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: 20,
+                      fontSize: 25,
                       letterSpacing: -1.5),
                 ),
               ],
@@ -57,7 +55,7 @@ class _ValuationScreenState extends State<ValuationScreen> {
                   '모두를 위한 주식 가치평가 어플리케이션',
                   style: TextStyle(
                       fontWeight: FontWeight.w100,
-                      fontSize: 10,
+                      fontSize: 15,
                       letterSpacing: -1),
                 )
               ],
