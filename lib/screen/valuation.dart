@@ -1,5 +1,6 @@
 import 'package:everyvaluation/firebase_options.dart';
 import 'package:everyvaluation/model/ticker.dart';
+import 'package:everyvaluation/util/hintcard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
@@ -80,7 +81,7 @@ class _ValuationScreenState extends State<ValuationScreen> {
                     child: TypeAheadField(
                       textFieldConfiguration: TextFieldConfiguration(
                         autofocus: false,
-                        controller: this._typeAheadController,
+                        controller: _typeAheadController,
                         style: TextStyle(fontSize: 15, color: Colors.black),
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -111,7 +112,7 @@ class _ValuationScreenState extends State<ValuationScreen> {
                         );
                       },
                       onSuggestionSelected: (Map<String, String> suggestion) {
-                        this._typeAheadController.text = suggestion['Name']!;
+                        _typeAheadController.text = suggestion['Name']!;
                         // your implementation here
                       },
                       noItemsFoundBuilder: (value) {
@@ -126,6 +127,34 @@ class _ValuationScreenState extends State<ValuationScreen> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Hint for you',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 100,
+              child: ListView.builder(
+                itemCount: 4,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return HintCard(
+                    valuationName: 'PER',
+                    hintText: 'EPS / 주가',
+                  ); //여기에 밸류에이션 방법 설명 넣기
+                },
               ),
             )
           ],
