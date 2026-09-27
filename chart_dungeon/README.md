@@ -47,6 +47,9 @@
 
 Godot 4.4 이상에서 돌아간다. 4.4.1과 4.7.2에서 테스트했다.
 
+- 가장 쉬운 방법: Godot를 따로 깔지 않아도 된다. 처음 실행할 때만 Godot 4.4.1(약 60–130MB)을 `.godot_bin/`에 받고 게임 파일을 준비한다.
+  - Windows: `chart_dungeon/run_windows.bat` 더블클릭
+  - macOS · Linux: 터미널에서 `sh chart_dungeon/run.sh`
 - 편집기: Godot에서 `chart_dungeon/project.godot`을 열고 F5.
 - 명령줄:
   ```sh
