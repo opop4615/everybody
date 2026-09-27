@@ -184,7 +184,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if screen and screen.handle_key(key):
 		get_viewport().set_input_as_handled()
 		return
-	if run != null and key.keycode == KEY_N:
+	if key.keycode == KEY_N:
 		open_codex()
 		get_viewport().set_input_as_handled()
 	elif run != null and key.keycode == KEY_D:

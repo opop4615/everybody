@@ -1006,6 +1006,9 @@ func _show_settlement() -> void:
 		_:
 			verdict = "D-%d · 포지션과 걸린 주문은 내일로 넘어간다." % (trade.days - trade.day)
 	rows.append(Look.wrap_label(verdict, 14, verdict_color, 340, "bold"))
+	var what_if := _what_if(events, today)
+	if not what_if.is_empty():
+		rows.append(Look.wrap_label(what_if, 12, Look.SOFT, 340))
 	for message in _new_messages():
 		rows.append(Look.wrap_label(message, 12, Look.UP_TEXT, 340))
 	var button := Look.button("다음 날" if not trade.is_over() else "거래 결과", "primary", 18, "Space")
@@ -1027,6 +1030,30 @@ func _show_settlement() -> void:
 			app.sfx.play("alarm", -6.0)
 		Trade.State.FAILED:
 			app.sfx.play("lose", -8.0)
+
+
+## 주문이 체결된 날, 그 주문이 없었다면 종가까지 어땠을지 한 줄로.
+func _what_if(events: Array, today: Bar) -> String:
+	var m := trade.instrument.multiplier
+	for event: Dictionary in events:
+		if event["kind"] != "fill":
+			continue
+		var text := String(event["text"])
+		var name := ""
+		var subjects := {"손절": "손절이", "익절": "익절이", "트레일링": "트레일링 스톱이", "리스크 매니저": "리스크 매니저가"}
+		for key: String in subjects:
+			if text.contains(key):
+				name = subjects[key]
+		if name.is_empty():
+			continue
+		var held := -int(event["delta"])
+		var diff := (today.close - float(event["price"])) * held * m
+		if absf(diff) < 0.5:
+			continue
+		if diff > 0.0:
+			return "만약 %s 없었다면 종가까지 %s 더 벌었다. 대신 그 사이 더 밀렸을 수도 있었다." % [name, Fmt.money(diff)]
+		return "만약 %s 없었다면 종가까지 %s 더 잃었다. 주문이 계좌를 지켰다." % [name, Fmt.money(-diff)]
+	return ""
 
 
 func _mult_text() -> String:
