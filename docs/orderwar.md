@@ -3,8 +3,13 @@
 > 매수세와 매도세가 호가창에서 싸운다. 나는 한쪽 진영에 합류해 돌격하고, 벽을 쌓고,
 > 차트 패턴이 완성되는 순간 스킬을 날린다.
 
-앱 하단 탭 **호가전쟁**에서 플레이한다. 한 판은 가상 종목의 하루 장(09:00~15:30)이고,
-0.5초가 장중 1분이라 약 3분 15초면 끝난다 (2배속 가능).
+한 판은 가상 종목의 하루 장(09:00~15:30)이고, 0.5초가 장중 1분이라 약 3분 15초면 끝난다 (2배속 가능).
+
+두 가지 버전이 같은 규칙·수치로 들어 있다.
+
+- **Godot 버전** (`godot/`): PC 가로 화면. 왼쪽 호가창, 오른쪽 전투 공간(호가 한 칸 = 전장 한 열,
+  잔량 = 병력), 그 아래 스킬 카드·차트·전장 소식. 실행과 구조는 [`godot/README.md`](../godot/README.md).
+- **Flutter 버전**: 앱 하단 탭 **호가전쟁** (세로 모바일 화면).
 
 ## 핵심 루프
 
@@ -109,6 +114,7 @@ B = 승리 또는 수익, C = 둘 다 실패.
 
 ```
 dart run tool/balance_sim.dart 200
+godot --headless --path godot --script res://tools/balance_sim.gd -- 100
 ```
 
 ## 코드 구조
@@ -129,6 +135,9 @@ dart run tool/balance_sim.dart 200
 
 엔진은 Flutter에 의존하지 않는 순수 Dart이고 시드를 주면 결정적이다. 테스트는 `test/game/`와
 `test/orderwar_widget_test.dart`.
+
+Godot 버전은 같은 엔진을 GDScript로 옮긴 `godot/core/`와 화면 `godot/ui/`로 되어 있다
+(자세한 표는 [`godot/README.md`](../godot/README.md)). 테스트는 `godot/tests/`.
 
 ## 다음 단계 아이디어
 
