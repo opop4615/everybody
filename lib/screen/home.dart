@@ -1,4 +1,5 @@
 import 'package:everyvaluation/screen/community.dart';
+import 'package:everyvaluation/screen/orderwar.dart';
 import 'package:everyvaluation/screen/setting.dart';
 import 'package:everyvaluation/screen/valuation.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
     super.initState();
     _tabController = TabController(
       initialIndex: 0,
-      length: 3,
+      length: 4,
       vsync: this,
     );
   }
@@ -38,8 +39,13 @@ class _homeState extends State<home> with TickerProviderStateMixin {
       bottomNavigationBar: MotionTabBar(
         initialSelectedTab: "가치평가",
         useSafeArea: true,
-        labels: const ["가치평가", "커뮤니티", "설정"],
-        icons: const [Icons.calculate, Icons.home, Icons.settings],
+        labels: const ["가치평가", "호가전쟁", "커뮤니티", "설정"],
+        icons: const [
+          Icons.calculate,
+          Icons.local_fire_department,
+          Icons.home,
+          Icons.settings
+        ],
         tabSize: 50,
         tabBarHeight: 55,
         textStyle: const TextStyle(
@@ -66,6 +72,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
           ValuationScreen(),
+          OrderWarScreen(),
           CommunityScreen(),
           SettingScreen(),
         ],
