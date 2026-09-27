@@ -457,9 +457,12 @@ func _resolve_day() -> Dictionary:
 				run.account += pay
 				option_pay += pay
 				events.append({"t": 3.0, "price": close, "kind": "option", "text": "옵션 행사", "amount": pay})
+		var settled_qty := position.qty
+		var settled_basis := position.basis
 		var settle := position.settle(close, mult)
 		run.account += settle
-		events.append({"t": 3.0, "price": close, "kind": "settle", "text": "일일정산", "amount": settle})
+		events.append({"t": 3.0, "price": close, "kind": "settle", "text": "일일정산", "amount": settle,
+			"qty": settled_qty, "basis": settled_basis})
 		if run.account < run.margin_line:
 			state = State.BUSTED
 	var summary := {

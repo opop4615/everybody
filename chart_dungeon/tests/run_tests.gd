@@ -38,6 +38,8 @@ func _run() -> void:
 			suite.current = "%s::%s" % [path.get_file().get_basename(), method_name]
 			tests += 1
 			await suite.call(method_name)
+			if suite.get("require_end") and not suite.ended.has(suite.current):
+				suite.failures.append("%s: 끝까지 가지 못했다 (스크립트 오류?)" % suite.current)
 		failures.append_array(suite.failures)
 		checks += suite.checks
 	for failure in failures:

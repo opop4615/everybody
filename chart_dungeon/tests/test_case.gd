@@ -7,6 +7,13 @@ var current := ""
 var checks := 0
 ## UI 테스트용 (러너가 넣어 준다).
 var tree: SceneTree
+## 끝까지 간 테스트. 스크립트 오류로 중간에 멈추면 여기에 없다.
+var ended := {}
+
+
+## 테스트 맨 끝에서 부른다 (중간에 오류로 멈추지 않았다는 표시).
+func end() -> void:
+	ended[current] = true
 
 
 func check(condition: bool, message := "") -> void:
