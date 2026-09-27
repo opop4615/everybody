@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cg7yqxq1ebl2x"
-path="res://.godot/imported/NanumSquareNeo-bRg.ttf-6844e13861522c199e2d449408afbe32.fontdata"
+uid="uid://clirc2t8425fd"
+path="res://.godot/imported/Galmuri11.ttf-00befc02eea84b42584c8dc13a997f0a.fontdata"
 
 [deps]
 
-source_file="res://fonts/NanumSquareNeo-bRg.ttf"
-dest_files=["res://.godot/imported/NanumSquareNeo-bRg.ttf-6844e13861522c199e2d449408afbe32.fontdata"]
+source_file="res://fonts/Galmuri11.ttf"
+dest_files=["res://.godot/imported/Galmuri11.ttf-00befc02eea84b42584c8dc13a997f0a.fontdata"]
 
 [params]
 

@@ -49,9 +49,9 @@ func _report(company: Company, games: int, active: bool) -> void:
 		for item: BattleEngine.FeedItem in engine.feed:
 			if item.title.begins_with("정적 VI"):
 				vi += 1
-			if item.title.contains("스킬 「"):
+			if item.title.contains("스킬 카드 획득"):
 				skills += 1
-			if item.title.contains("준비 중"):
+			if item.kind == BattleEngine.FeedKind.WARNING:
 				enemy_skills += 1
 	changes.sort()
 	ranges.sort()
@@ -62,7 +62,7 @@ func _report(company: Company, games: int, active: bool) -> void:
 	print("── %s (%s원) %s · %d판" % [company.name, Krx.format_number(company.base_price), "적극 플레이어" if active else "관망 플레이어", games])
 	print("  종가 등락 |평균| %.1f%%  p5 %.1f / p50 %.1f / p95 %.1f" % [abs_mean, _pct(changes, 0.05), _pct(changes, 0.5), _pct(changes, 0.95)])
 	print("  하루 변동폭 p50 %.1f%%  p95 %.1f%%" % [_pct(ranges, 0.5), _pct(ranges, 0.95)])
-	print("  VI %.2f회/판  상·하한가 안착 %.1f%%  매수군 승 %d%%" % [float(vi) / games, 100.0 * limit_wins / games, roundi(100.0 * bull_wins / games)])
+	print("  VI %.2f회/판  상·하한가 안착 %.1f%%  사자 승 %d%%" % [float(vi) / games, 100.0 * limit_wins / games, roundi(100.0 * bull_wins / games)])
 	print("  스킬 획득 %.1f  적 스킬 %.1f /판  플레이어 승률 %d%%" % [float(skills) / games, float(enemy_skills) / games, roundi(100.0 * player_wins / games)])
 
 

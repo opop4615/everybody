@@ -1,6 +1,6 @@
 extends SceneTree
 ## 헤드리스 테스트 러너.
-##   godot --headless --path godot --script res://tests/run_tests.gd
+##   godot --headless --path godot --script res://tests/run_tests.gd [-- engine patterns ...]
 
 const SUITES := [
 	"res://tests/test_krx.gd",
@@ -19,8 +19,15 @@ func _run() -> void:
 	var failures: Array[String] = []
 	var tests := 0
 	var checks := 0
+	var only := Array(OS.get_cmdline_user_args())
 	for path: String in SUITES:
-		var suite: TestCase = load(path).new()
+		if not only.is_empty() and not only.any(func(word: String) -> bool: return path.contains(word)):
+			continue
+		var script: GDScript = load(path)
+		if script == null or not script.can_instantiate():
+			failures.append("%s: 스크립트를 불러오지 못했다" % path)
+			continue
+		var suite: TestCase = script.new()
 		suite.tree = self
 		for method in suite.get_method_list():
 			var method_name: String = method.name
