@@ -95,6 +95,15 @@ def build_usdkrw(offline):
     return estimate(closes, 2)
 
 
+# 추정 대신 실제 장중 흐름을 따르는 날.
+# 2020-04-20 WTI 5월물: 17.73에서 시작해 장중 -40.32까지 밀리고 -37.63에 정산했다
+# (미 의회조사국 IN11354, 미 에너지정보청 Today in Energy 43495).
+# 현물 계열(전일 18.31, 당일 -36.98)에 맞춰 시가는 전일 대비 같은 폭(-0.54), 저가는 종가 대비 같은 폭(-2.69)으로 옮긴다.
+WTI_SESSIONS = {
+    "2020-04-20": {"open_from_prev": 17.73 - 18.27, "low_from_close": -40.32 - (-37.63)},
+}
+
+
 def build_wti(offline):
     closes = []
     for row in csv.reader(io.StringIO(fetch("wti_daily.csv", offline))):
@@ -103,7 +112,15 @@ def build_wti(offline):
         day = dt.date.fromisoformat(row[0])
         if in_range(day):
             closes.append((day, float(row[1])))
-    return estimate(closes, 2)
+    rows = estimate(closes, 2)
+    for i, row in enumerate(rows):
+        session = WTI_SESSIONS.get(row[0].isoformat())
+        if session and i > 0:
+            prev_close = rows[i - 1][4]
+            opening = round(prev_close + session["open_from_prev"], 2)
+            low = round(row[4] + session["low_from_close"], 2)
+            rows[i] = (row[0], opening, opening, low, row[4], 1)
+    return rows
 
 
 def build_gold(offline):

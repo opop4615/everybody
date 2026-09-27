@@ -121,7 +121,38 @@ func _run() -> void:
 	main.run.over = true
 	main.show_end()
 	await _shot("18_end")
+	await _negative_oil()
 	quit()
+
+
+## 2막 보스: 2020년 4월 20일 WTI 마이너스 유가. 롱을 들고 가면 마진콜.
+func _negative_oil() -> void:
+	main.new_run(9)
+	main.run.next_act()
+	main.show_map()
+	await _shot("19_map_act2")
+	main.run.column = main.run.columns().size() - 2
+	main.run.lane = 1
+	var boss: Dictionary = main.run.columns().back()[0]
+	main.open_node(boss)
+	await _wait(0.8)
+	var screen: TradeScreen = main.screen
+	for view in screen._views.duplicate():
+		if view.card.id == "long" and screen.trade.why_not(view.card).is_empty():
+			screen.play_view(view)
+			break
+	while screen.trade.today().date < "2020-04-20" and not screen.trade.is_over():
+		screen.end_day()
+		await _wait(4.5)
+		screen._continue()
+		screen._continue()
+		await _wait(0.8)
+	await _shot("20_oil_before")
+	screen.end_day()
+	await _wait(2.2)
+	await _shot("21_oil_replay", 1)
+	await _wait(3.5)
+	await _shot("22_oil_settlement")
 
 
 func _open_desk() -> void:

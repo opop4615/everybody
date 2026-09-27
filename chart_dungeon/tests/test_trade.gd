@@ -56,7 +56,7 @@ func test_stop_gap_fills_at_open() -> void:
 	trade.end_day()
 	eq(trade.position.qty, 2, "4월 17일 롱 2계약")
 	var friday := trade.yesterday().close
-	trade.orders.append(Order.stop(1, 15.0))
+	trade.orders.append(Order.stop(1, 18.0))
 	var result := trade.end_day()
 	eq(trade.position.qty, 0, "손절로 나갔다")
 	var gap_event: Dictionary = {}
@@ -65,8 +65,8 @@ func test_stop_gap_fills_at_open() -> void:
 			gap_event = event
 	check(not gap_event.is_empty(), "갭 손절 사건이 있다")
 	var open := trade.bars[trade.start_index + 1].open
-	check(absf(float(gap_event.get("price", 0.0)) - open) < 0.0001, "손절 15가 아니라 시가에 체결")
-	check(open < 15.0 and friday > 15.0, "시가가 손절선 아래에서 열렸다")
+	check(absf(float(gap_event.get("price", 0.0)) - open) < 0.0001, "손절 18이 아니라 시가에 체결")
+	check(open < 18.0 and friday > 18.0, "시가가 손절선 아래에서 열렸다")
 
 
 func test_margin_line_busts_the_run() -> void:
