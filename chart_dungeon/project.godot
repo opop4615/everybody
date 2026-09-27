@@ -29,6 +29,8 @@ theme/custom_font="res://fonts/IBMPlexSansKR-Regular.ttf"
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
+
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.055, 0.075, 0.1, 1)

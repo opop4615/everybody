@@ -53,6 +53,20 @@ Godot 4.4 이상에서 돌아간다. 4.4.1과 4.7.2에서 테스트했다.
   godot --path chart_dungeon
   ```
 
+### 실행 파일 만들기
+
+`export_presets.cfg`에 Windows, Linux, macOS 설정이 들어 있다. Godot 4.4.1 내보내기 템플릿을 설치한 뒤 아래 명령을 쓴다.
+
+```sh
+godot --headless --path chart_dungeon --export-release "Windows Desktop" ../build/chart_dungeon/windows/ChartDungeon.exe
+godot --headless --path chart_dungeon --export-release "Linux" ../build/chart_dungeon/linux/ChartDungeon.x86_64
+godot --headless --path chart_dungeon --export-release "macOS" ../build/chart_dungeon/macos/ChartDungeon.zip
+```
+
+- Windows와 Linux는 게임 데이터가 실행 파일 하나에 들어간다.
+- macOS 앱은 애플 공증을 받지 않았다. 처음 열 때 한 번만 앱을 우클릭해서 '열기'를 누르거나, 터미널에서 `xattr -cr "차트 던전.app"`을 실행한다.
+- 투자 노트는 여기에 저장된다: Windows `%APPDATA%\Godot\app_userdata\차트 던전\notes.json`, macOS `~/Library/Application Support/Godot/app_userdata/차트 던전/`.
+
 ### 조작
 
 | 키 | 동작 |
